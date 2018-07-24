@@ -1,7 +1,6 @@
 <?php
 
 namespace OAuth2;
-
 /**
  * Interface which represents an object response.  Meant to handle and display the proper OAuth2 Responses
  * for errors and successes
@@ -22,11 +21,12 @@ interface ResponseInterface
 
     /**
      * @param int $statusCode
+     * @param string|bool|null $text
      */
-    public function setStatusCode($statusCode);
+    public function setStatusCode(int $statusCode, $text = null);
 
     /**
-     * @param int    $statusCode
+     * @param int $statusCode
      * @param string $name
      * @param string $description
      * @param string $uri
@@ -35,7 +35,7 @@ interface ResponseInterface
     public function setError($statusCode, $name, $description = null, $uri = null);
 
     /**
-     * @param int    $statusCode
+     * @param int $statusCode
      * @param string $url
      * @param string $state
      * @param string $error

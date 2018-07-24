@@ -141,12 +141,12 @@ class Response implements ResponseInterface
 
     /**
      * @param int $statusCode
-     * @param string $text
+     * @param string|bool|null $text
      * @throws InvalidArgumentException
      */
-    public function setStatusCode($statusCode, $text = null)
+    public function setStatusCode(int $statusCode, $text = null)
     {
-        $this->statusCode = (int) $statusCode;
+        $this->statusCode = $statusCode;
         if ($this->isInvalid()) {
             throw new InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $statusCode));
         }
@@ -307,7 +307,7 @@ class Response implements ResponseInterface
      * @return mixed
      * @throws InvalidArgumentException
      */
-    public function setError($statusCode, $error, $errorDescription = null, $errorUri = null)
+    public function setError(int $statusCode, $error, $errorDescription = null, $errorUri = null)
     {
         $parameters = array(
             'error' => $error,
@@ -345,7 +345,7 @@ class Response implements ResponseInterface
      * @return mixed
      * @throws InvalidArgumentException
      */
-    public function setRedirect($statusCode, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
+    public function setRedirect(int $statusCode, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
     {
         if (empty($url)) {
             throw new InvalidArgumentException('Cannot redirect to an empty URL.');
